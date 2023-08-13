@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerLife : MonoBehaviour
 {
+    private RidigBody2D
     private Animator anim;
 
     private void Start()
     {
-        anim = GetComponent
+        anim = GetComponent<Animator>();
+        ridigBody = GetComponent<RidigBody2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision) 
@@ -21,6 +23,6 @@ public class PlayerLife : MonoBehaviour
 
     private void Die()
     {
-
+        anim.SetTrigger("death");
     }
 }
