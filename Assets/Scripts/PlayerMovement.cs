@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float dirX = 0f;
     [SerializeField] private float moveSpeed = 7f;
-    [SerializeField] private float jumpForce = 7f;
+    [SerializeField] private float jumpForce = 4f;
 
     private enum MovementState { idle, running, jumping, falling }
     
@@ -32,7 +32,10 @@ public class PlayerMovement : MonoBehaviour
     {
 
         dirX = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+        if (rb.bodyType == RigidbodyType2D.Dynamic)
+        {
+            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+        }
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
